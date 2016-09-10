@@ -11,6 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::auth();
+
+// Route::get('/home', 'HomeController@index');
+
+// Route::resource("users", 'UsersController');
+
+Route::group(['middleware' => 'web'], function(){
+
+	Route::get('/', function () {
+	    return view('welcome');
+	});
+
+	Route::auth();
+
+	Route::get('/home', 'UsersController@index');
+	// Route::get('/meals/create', 'MealsController@store');
+
+	Route::resource("users", 'UsersController');
+	Route::resource("meals", 'MealsController');
 });
